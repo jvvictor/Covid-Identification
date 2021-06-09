@@ -100,9 +100,9 @@ class preprocess:
 
         for j in range(self.metadata.shape[0]):
              if self.metadata['finding'][j] != "COVID-19":
-                    self.metadata['finding'][j] = 0
+                    self.metadata['finding'][j] = '0'
              else:
-                    self.metadata['finding'][j] = 1
+                    self.metadata['finding'][j] = '1'
 
         return
 
@@ -111,29 +111,21 @@ class preprocess:
         unique_patients = self.metadata['patientid'].unique()
         train , test = train_test_split(unique_patients, test_size = 0.05, random_state = 0, shuffle = True)
 
-        self.traindata = self.metadata.copy()
-        self.valdata = self.metadata.copy()
+        self.train_data = self.metadata.copy()
+        self.val_data = self.metadata.copy()
 
         for i in range(self.metadata.shape[0]):
             if self.metadata['patientid'][i] not in test:
-                    self.traindata = self.traindata.drop([i], axis = 0)
+                    self.traindata = self.train_data.drop([i], axis = 0)
             else:
-                    self.valdata = self.valdata.drop([i], axis = 0)
+                    self.valdata = self.val_data.drop([i], axis = 0)
 
-        self.traindata.reset_index(drop = True, inplace = True)
-        self.valdata.reset_index(drop = True, inplace = True)
+        self.train_data.reset_index(drop = True, inplace = True)
+        self.val_data.reset_index(drop = True, inplace = True)
 
         return
 
 
 if __name__ == "__main__":
-
-    data_path = "C:/Users/jvsoa/Desktop/COVID/metadata.csv"
-    covid_1 = preprocess(data_path)
-    covid_1.filter()
-    covid_1.unique_dis()
-    covid_1.unique_id()
-    covid_1.show_image(int(input("How many images to show?: ")))
-    covid_1.transf_binary()
-    covid_1.split_train_data()
+    pass
     

@@ -28,23 +28,23 @@ class DataLoader:
             dataframe = self.train_dataframe,
             directory = self.image_dir,
             x_col = "filename",
-            y_col = "findings",
+            y_col = "finding",
             class_mode = "binary",
-             batch_size = 8,
+            batch_size = 8,
             shuffle = True,
             target_size = (416, 416)
-            )
+        )
 
         self.validation_data_loader = self.train_image_generator.flow_from_dataframe(
             dataframe = self.train_dataframe,
             directory = self.image_dir,
             x_col = "filename",
-            y_col = "findings",
+            y_col = "finding",
             class_mode = "binary",
             batch_size = 4,
             shuffle = True,
             target_size = (416, 416)
-            )
+        )
 
         return
 
