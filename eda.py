@@ -6,7 +6,7 @@ EDA - Exploratory Data Analysis
 
 from enum import unique
 from re import search
-import numpy
+import numpy as np
 import pandas as pd
 import os
 import glob
@@ -14,7 +14,7 @@ import cv2
 from sklearn.model_selection import train_test_split
 
 
-class Preprocess:  
+class preprocess:  
 
     def __init__(self, data_path):
 
@@ -31,7 +31,7 @@ class Preprocess:
 
         return data_frame
 
-    def Filter(self):
+    def filter(self):
 
         for n in range(self.metadata.shape[0]):
              if self.metadata['modality'][n] != "X-ray":
@@ -129,8 +129,8 @@ class Preprocess:
 if __name__ == "__main__":
 
     data_path = "C:/Users/jvsoa/Desktop/COVID/metadata.csv"
-    covid_1 = Preprocess(data_path)
-    covid_1.Filter()
+    covid_1 = preprocess(data_path)
+    covid_1.filter()
     covid_1.unique_dis()
     covid_1.unique_id()
     covid_1.show_image(int(input("How many images to show?: ")))
